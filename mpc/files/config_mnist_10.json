@@ -1,0 +1,16 @@
+{
+    "_desc_party_ips": "IP addresses of each party, ordered by party number",
+    "party_ips": ["127.0.0.1", "127.0.0.1"],
+
+    "_desc_party_users": "Usernames for each party, ordered by party number. Can be used by scripts to SSH into machines if necessary to start piranha processes",
+    "party_users": ["alice", "bob"],
+
+    "_desc_num_clients": "Number of FL clients",
+    "num_clients": 10,
+
+    "_desc_num_dimensions": "Number of vector dimensions",
+    "num_dimensions": 62000,
+
+    "_desc_trial_times": "How many times we repeat the experiment",
+    "trial_times": 100
+}

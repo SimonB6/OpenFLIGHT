@@ -1,0 +1,7 @@
+flight*
+
+output/
+build/
+ext/
+
+.vscode
