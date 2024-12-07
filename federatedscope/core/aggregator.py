@@ -172,6 +172,29 @@ class ClientsAvgAggregator(Aggregator):
                     self.cluster_benign_model += list(local_model.values())[-1]
         self.cluster_benign_model /= majority_count
 
+    def weight_aggregation(self, models):
+        weight_list = []
+        self.allow_benign_model(models)
+        self.general_total_time += 1
+        for i in range(len(models)):
+            client_id, local_sample_size, local_model = models[i]
+            pre_value = self.pre_value[client_id]
+            self.total_time[client_id] += 1
+            final_pre_value = list(pre_value.values())
+            final_pre_value = final_pre_value[-1]
+            final_local_value = list(local_model.values())
+            final_local_value = final_local_value[-1]
+            dir_diff = direction(final_pre_value.float(), final_local_value.float())
+            penalty_factor = (float(np.linalg.norm(list(local_model.values())[-1].float(), ord=2))*100)
+            if dir_diff <= 0:
+                dir_diff = dir_diff * penalty_factor
+            weight_list.append(dir_diff)
+            self.pre_value[client_id] = self.pri_benign[client_id]
+
+        array_weight_list = np.array(weight_list)
+        weight_result = regular(array_weight_list)
+        return weight_result
+
     def save_model(self, path, cur_round=-1):
         assert self.model is not None
         ckpt = {'cur_round': cur_round, 'model': self.model.state_dict()}
@@ -196,26 +219,9 @@ class ClientsAvgAggregator(Aggregator):
             if i == 0:
                 target_model = _
         
-        weight_list = []
-        self.allow_benign_model(models)
-        self.general_total_time += 1
-        for i in range(len(models)):
-            client_id, local_sample_size, local_model = models[i]
-            pre_value = self.pre_value[client_id]
-            self.total_time[client_id] += 1
-            final_pre_value = list(pre_value.values())
-            final_pre_value = final_pre_value[-1]
-            final_local_value = list(local_model.values())
-            final_local_value = final_local_value[-1]
-            dir_diff = direction(final_pre_value.float(), final_local_value.float())
-            penalty_factor = (float(np.linalg.norm(list(local_model.values())[-1].float(), ord=2))*20)
-            if dir_diff <= 0:
-                dir_diff = dir_diff * penalty_factor
-            weight_list.append(dir_diff)
-            self.pre_value[client_id] = self.pri_benign[client_id]
-
-        array_weight_list = np.array(weight_list)
-        weight_result = regular(array_weight_list)
+        weight_result = []
+        if self.cfg.attack.robustness:
+            weight_result = self.weight_aggregation(models)
 
         client_id, sample_size, avg_model = models[0]
         for key in avg_model:
@@ -227,9 +233,10 @@ class ClientsAvgAggregator(Aggregator):
                     weight = 1.0 / len(models)
                 elif self.cfg.federate.use_ss:
                     weight = 1.0
+                elif self.cfg.attack.robustness:
+                    weight = weight_result[i]
                 else:
                     weight = local_sample_size / training_set_size
-                    weight = weight_result[i]
 
                 if not self.cfg.federate.use_ss:
                     if isinstance(local_model[key], torch.Tensor):

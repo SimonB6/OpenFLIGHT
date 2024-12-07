@@ -195,9 +195,16 @@ def load_poisoned_dataset_pixel(data, ctx, mode):
     target_label = int(ctx.attack.target_label_ind)
     transforms_funcs = get_transform(ctx, 'torchvision')['transform']
 
+    # if "femnist" in ctx.data.type:
+    #     inject_portion_train = ctx.attack.poison_ratio
+    #     target_label = torch.tensor(int(ctx.attack.target_label_ind)).long()
     if "femnist" in ctx.data.type:
         inject_portion_train = ctx.attack.poison_ratio
         target_label = torch.tensor(int(ctx.attack.target_label_ind)).long()
+
+    elif "MNIST" in ctx.data.type:
+        inject_portion_train = ctx.attack.poison_ratio
+        target_label = int(ctx.attack.target_label_ind)
 
     elif "CIFAR10" in ctx.data.type:
         inject_portion_train = ctx.attack.poison_ratio
@@ -291,7 +298,10 @@ def poisoning(data, ctx):
         if 'cifar' in ctx.data.type.lower():
             class_num_train = torch.zeros(10)
             class_num_test = torch.zeros(10)
-        else:
+        elif 'MNIST' in ctx.data.type:
+            class_num_train = torch.zeros(10)
+            class_num_test = torch.zeros(10)
+        elif 'femnist' == ctx.data.type.lower():
             class_num_train = torch.zeros(62)
             class_num_test = torch.zeros(62)
 

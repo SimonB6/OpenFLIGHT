@@ -40,6 +40,7 @@ def extend_attack_cfg(cfg):
     cfg.attack.dp_noise = -1.0
     cfg.attack.krum = False
     cfg.attack.multi_krum = False
+    cfg.attack.robustness = False
 
     # Note: the mean and std should be the list type.
 

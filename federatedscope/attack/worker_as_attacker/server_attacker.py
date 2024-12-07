@@ -70,7 +70,6 @@ class BackdoorServer(Server):
                     receiver = np.random.choice(client_list,
                                                 size=sample_client_num - np.array(self._cfg.attack.attacker_id).size,
                                                 replace=False).tolist()
-                    print('------------------'+str(receiver)+'-------------------')
                     # receiver.insert(0, self._cfg.attack.attacker_id)
                     receiver.extend(self._cfg.attack.attacker_id)
                     logger.info('starting the fix-frequency poisoning attack')
