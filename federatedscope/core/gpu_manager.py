@@ -1,6 +1,7 @@
 import os
 
 
+
 def check_gpus():
     if not 'NVIDIA System Management' in os.popen('nvidia-smi -h').read():
         print("'nvidia-smi' tool not found.")

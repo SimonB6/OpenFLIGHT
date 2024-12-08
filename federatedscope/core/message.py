@@ -4,6 +4,7 @@ import numpy as np
 from federatedscope.core.proto import gRPC_comm_manager_pb2
 
 
+
 class Message(object):
     """
     The data exchanged during an FL course are abstracted as 'Message' in FederatedScope.

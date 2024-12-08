@@ -7,6 +7,7 @@ from federatedscope.core.gRPC_server import gRPCComServeFunc
 from federatedscope.core.message import Message
 
 
+
 class StandaloneCommManager(object):
     """
     The communicator used for standalone mode

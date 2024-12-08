@@ -2,6 +2,7 @@ import copy
 from typing import Dict, List
 
 
+
 def wrap_regularized_optimizer(base_optimizer, regular_weight):
     base_optimizer_type = type(base_optimizer)
     internal_base_optimizer = copy.copy(

@@ -4,6 +4,7 @@ from torch.nn import Linear, ModuleList
 from torch.nn import BatchNorm1d, Identity
 
 
+
 class MLP(torch.nn.Module):
     """
     Multilayer Perceptron

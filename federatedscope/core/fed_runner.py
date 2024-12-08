@@ -9,6 +9,7 @@ from federatedscope.core.auxiliaries.model_builder import get_model
 logger = logging.getLogger(__name__)
 
 
+
 class FedRunner(object):
     """
     This class is used to construct an FL course, which includes `_set_up` and `run`.

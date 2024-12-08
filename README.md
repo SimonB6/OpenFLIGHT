@@ -131,22 +131,22 @@ python federatedscope/main.py --cfg federatedscope/example_configs/backdoor_feda
 In the `script/` directory, we define configuration files with different predefined parameters in `.yaml` format. These parameters are designed to accommodate experiments with backdoor attacks in various federated learning (personalized federated learning) frameworks, each with different poisoning rates:
 
 ```
-# Perform continuous backdoor attacks in the FedAvg framework with PDR=0.1
-python federatedscope/main.py --cfg federatedscope/scripts/backdoor_scripts/backdoor_fedavg_on_cifar10_pdr0.1.yaml
-# Perform continuous backdoor attacks in the FedAvg framework with PDR=0.2
-python federatedscope/main.py --cfg federatedscope/scripts/backdoor_scripts/backdoor_fedavg_on_cifar10_pdr0.2.yaml
+# Perform continuous backdoor attacks in the FedAvg framework with PMR=0.1
+python federatedscope/main.py --cfg federatedscope/scripts/backdoor_scripts/backdoor_fedavg_on_cifar10_pmr0.1.yaml
+# Perform continuous backdoor attacks in the FedAvg framework with PMR=0.2
+python federatedscope/main.py --cfg federatedscope/scripts/backdoor_scripts/backdoor_fedavg_on_cifar10_pmr0.2.yaml
 ...
 
-# Perform continuous backdoor attacks in the Ditto framework with PDR=0.1
-python federatedscope/main.py --cfg federatedscope/scripts/backdoor_scripts/pfl_backdoor_ditto_on_cifar10_pdr0.1.yaml
-# Perform continuous backdoor attacks in the Ditto framework with PDR=0.2
-python federatedscope/main.py --cfg federatedscope/scripts/backdoor_scripts/pfl_backdoor_ditto_on_cifar10_pdr0.2.yaml
+# Perform continuous backdoor attacks in the Ditto framework with PMR=0.1
+python federatedscope/main.py --cfg federatedscope/scripts/backdoor_scripts/pfl_backdoor_ditto_on_cifar10_pmr0.1.yaml
+# Perform continuous backdoor attacks in the Ditto framework with PMR=0.2
+python federatedscope/main.py --cfg federatedscope/scripts/backdoor_scripts/pfl_backdoor_ditto_on_cifar10_pmr0.2.yaml
 ...
 
-# Perform continuous backdoor attacks in the Fine-Tuning framework with PDR=0.1
-python federatedscope/main.py --cfg federatedscope/scripts/backdoor_scripts/pfl_backdoor_ft_on_cifar10_pdr0.1.yaml
-# Perform continuous backdoor attacks in the Fine-Tuning framework with PDR=0.2
-python federatedscope/main.py --cfg federatedscope/scripts/backdoor_scripts/pfl_backdoor_ft_on_cifar10_pdr0.2.yaml
+# Perform continuous backdoor attacks in the Fine-Tuning framework with PMR=0.1
+python federatedscope/main.py --cfg federatedscope/scripts/backdoor_scripts/pfl_backdoor_ft_on_cifar10_pmr0.1.yaml
+# Perform continuous backdoor attacks in the Fine-Tuning framework with PMR=0.2
+python federatedscope/main.py --cfg federatedscope/scripts/backdoor_scripts/pfl_backdoor_ft_on_cifar10_pmr0.2.yaml
 ...
 ```
 

@@ -1,6 +1,7 @@
 import sys
 
 
+
 class Strategy(object):
     def __init__(self, stg_type=None, threshold=0):
         self._stg_type = stg_type

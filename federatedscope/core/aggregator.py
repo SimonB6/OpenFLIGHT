@@ -18,6 +18,7 @@ logger = logging.getLogger(__name__)
 #     return torch.cat([p.view(-1) for p in net.parameters()])
 
 
+
 def vectorize_net_dict(net):
     return torch.cat([net[key].view(-1) for key in net])
 

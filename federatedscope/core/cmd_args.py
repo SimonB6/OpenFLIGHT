@@ -2,6 +2,7 @@ import argparse
 import sys
 
 
+
 def parse_args():
     parser = argparse.ArgumentParser(description='FederatedScope')
     parser.add_argument('--cfg',

@@ -1,6 +1,7 @@
 import torch
 
 
+
 class LogisticRegression(torch.nn.Module):
     def __init__(self, in_channels, class_num, use_bias=True):
         super(LogisticRegression, self).__init__()
